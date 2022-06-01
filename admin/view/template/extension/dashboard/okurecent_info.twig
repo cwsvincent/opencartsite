@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-history"></i> {{ heading_title }}</h3>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <td class="text-left">{{ column_name }}</td>
+          <td>{{ column_passport_no }}</td>
+          <td>{{ column_gender }}</td>
+          <td>{{ column_nationality }}</td>
+          <td>{{ column_category }}</td>
+          <td>{{ column_justification }}</td>
+          <td>{{ column_loname }}</td>
+          <td>{{ column_date_added }}</td>
+
+          <td class="text-right">{{ column_action }}</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% if oku %}
+        {% for okus in oku %}
+        <tr>
+          <td class="text-left">{{ okus.name}}</td>
+                  <td>{{ okus.passport_no }}</td>
+                  <td>{{ okus.gender }}</td>
+                  <td>{{ okus.nationality }}</td>
+                  <td>{{ okus.category }}</td>
+                  <td>{{ okus.justification }}</td>
+                  <td>{{ okus.loname }}</td>
+                  <td>{{ okus.date_added }}</td>
+          <td class="text-right"><a href="{{ okus.view }}" data-toggle="tooltip" title="{{ button_view }}" class="btn btn-info"><i class="fa fa-eye"></i></a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+          <td class="text-center" colspan="6">{{ text_no_results }}</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-left">
+        <h1>{{ heading_title }}</h1>
+        <ul class="breadcrumb">
+          {% for breadcrumb in breadcrumbs %}
+          <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="pull-right">
+       {% for okus in oku %}
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_back }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+        <a onclick="openInNewTab('{{ okus.save }}');" data-toggle="tooltip" id="button-pdf" title="{{ button_print_pdf }}" class="btn btn-primary"><i class="fa fa-print"></i></a>
+        {% endfor %}
+      </div>
+
+    </div>
+     <div class="col-sm-12"><br><br>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <table class="table table-bordered">
+          </table>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td class="text-left">{{ column_name }}</td>
+                <td class="text-left">{{ column_passport_no }}</td>
+                <td class="text-left">{{ column_gender }}</td>
+                <td class="text-left">{{ column_nationality }}</td>
+                <td class="text-left">{{ column_category }}</td>
+                <td class="text-left">{{ column_loname }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for okus in oku %}
+              <tr>
+                <td class="text-left">{{ okus.name }}</td>
+                <td class="text-left">{{ okus.passport_no}}</td>
+                <td class="text-left">{{ okus.gender}}</td>
+                <td class="text-left">{{ okus.nationality}}</td>
+                <td class="text-left">{{ okus.category}}</td>
+                <td class="text-left">{{ okus.loname}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!--table for 'justification' -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td style="width: 50%;" class="text-left">{{ column_justification }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for okus in oku %}
+              <tr>
+                {% if okus.justification %}
+                <td class="text-left">{{ okus.justification }}</td>
+                {% else %}
+                <td class="text-left">{{ text_no_justification }} </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!--table for 'Date_added' -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td style="width: 50%;" class="text-left">{{ column_date_added }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for okus in oku %}
+              <tr>
+                {# <td class="text-left">{{ okus.date_added }}</td> #}
+                {% if okus.justification %}
+                <td class="text-left">{{ okus.date_added }}</td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+{{ footer }}
+
+<script type="text/javascript">
+      
+  function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+  }
+
+</script>

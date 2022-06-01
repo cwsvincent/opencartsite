@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+            <link rel="stylesheet" href="catalog/view/theme/default/template/okupage/css/bootstrap.min.css">
+            <script src="catalog/view/theme/default/template/okupage/js/bootstrap.min.js"></script>
+            <div class="row">
+            <div class="col-sm-12"><h1 style="text-decoration:underline;">{{ heading_title }}</h1></div></div>
+            <div class="row" style="margin-bottom:20px;">
+            <div class="col-sm-12"><div style="text-align:center;margin-bottom:10px;"><img src="'. $image_path .'" alt="Photo attachment" height="100px"></div></div></div>
+            <div class="row">
+            <div class="col-sm-12">
+            <table class="table" style="width:100%; border:1px solid #000; border-collapse: collapse;font-size:14px;">
+            <tr style="background:#efefef;border:1px solid #000;">
+            
+            <td style="padding:8px; border:1px solid #000;width:40%;"><b>{{ text_fullName }}</b></td>
+            <td style="padding:8px; border:1px solid #000;">{{ oku.name }}</td>
+            </tr>
+            <tr>
+            <td style="padding:8px; border:1px solid #000;"><b>{{ text_passportNo }}</b></td>
+            <td style="padding:8px; border:1px solid #000;">{{ oku.passport_no }}</td>
+            </tr>
+            <tr style="background:#efefef;">
+            <td style="padding:8px; border:1px solid #000;"><b>{{ text_gender }}</b></td>
+            <td style="padding:8px; border:1px solid #000;">{{ oku.gender }}</td>
+            </tr>
+            <tr>
+            <td style="padding:8px; border:1px solid #000;"><b>{{ text_nationality }}</b></td>
+            <td style="padding:8px; border:1px solid #000;">{{ oku.nationality }}</td>
+            </tr>
+            <tr style="background:#efefef;">
+            <td style="padding:8px; border:1px solid #000;"><b>{{ text_categoryOKU }}</b></td>
+            <td style="padding:8px; border:1px solid #000;">{{ oku.category }}</td>
+            </tr>
+            <tr>
+            <td style="padding:8px; border:1px solid #000;"><b>{{ text_justification }}</b></td>
+            <td style="padding:8px; border:1px solid #000;">{{ oku.justification }}</td>
+            </tr>
+            <tr style="background:#efefef;">
+            <td style="padding:8px; border:1px solid #000;"><b>{{ text_LOName }}</b></td>
+            <td style="padding:8px; border:1px solid #000;">{{ oku.lo_name }}</td>
+            </tr>
+            </table>
+            </div>
+            </div>
+            <div style="width:100%; margin-top:20px;">
+            <div style="width:60%;float:left;">
+            <h5 style="margin-bottom:100px;">{{ text_ticketGenerated }}</h5>
+            <span>___________________________</span>
+            </div>
+            <div style="width:60%;float:left;">
+            <h5 style="margin-bottom:100px;">{{ text_approved}}</h5>
+            <span style="display:block;">___________________________</span><br/>
+             
+            <span style="font-weight:bold;">{{ oku.lo_name }}</span>
+           
+            </div>
+            </div>   
+</head>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{heading_title}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="catalog/view/theme/default/stylesheet/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/vendor/noui/nouislider.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/css/util.css">
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/css/main.css">
+<!--auto capitalize--==================================================================================-->
+    {# <style>
+        input[type=text] {
+        text-transform: capitalize;
+        }
+    </style> #}
+<!--===============================================================================================-->
+
+
+</head>
+<body>
+
+
+    <div class="container-contact100">
+        <div class="wrap-contact100">
+            <form class="contact100-form validate-form" method="post" enctype="multipart/form-data" id="form_oku">
+                <span class="contact100-form-title">
+                    {{heading_title}}
+                </span>
+                <span style='color:green;margin:10px;'> {{success_message}} </span>
+                <div class="wrap-input100 validate-input bg1" data-validate="{{text_typeName}}">
+                    <span class="label-input100">{{text_fullName}}</span>
+                    <input class="input100" type="text" name="name" placeholder="{{text_enterName}}" style="text-transform:uppercase" value="{% if name is defined %}{{name}}{% endif %}">
+                </div>
+
+                <div class="wrap-input100 validate-input bg1" data-validate="{{text_typePassNo}}">
+                    <span class="label-input100">{{text_passportNo}}</span>
+                    <input class="input100" type="text" name="passport_no" placeholder="{{text_enterPassport}}" value = "{% if passport_no is defined %}{{passport_no}}{% endif %}">
+                </div>
+
+                <div class="wrap-input100  validate-input rs1-wrap-input100 input100-select bg1" data-validate="{{text_selectGender}}">
+                    <span class="label-input100">{{text_gender}} <span style='color:red;' id="error_gender"></span> </span>
+                    <div>
+                        <select class="js-select2" name="gender" id="gender">
+
+                            {% if gender is defined %}
+                              {% if gender == '' %}
+                              <option value= '' selected> {{text_selectGender}}</option>
+                              <option value= '1'>{{text_male}}</option>
+                              <option value= '2'>{{text_female}}</option>
+
+                              {% elseif gender == '1' %}
+                              <option value= ''>{{text_selectGender}}</option>
+                              <option value= '1' selected>{{text_male}}</option>
+                              <option value= '2'>{{text_female}}</option>
+
+                              {% elseif gender == '2' %}
+                              <option value= ''>{{text_selectGender}}</option>
+                              <option value= '1'>{{text_male}}</option>
+                              <option value= '2' selected>{{text_female}}</option>
+
+                              {% endif %}
+
+                            {% else %}
+                              <option value= ''>{{text_selectGender}}</option>
+                              <option value= '1'>{{text_male}}</option>
+                              <option value= '2'>{{text_female}}</option>
+                            {% endif %}
+
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+                </div>
+
+                <div class="wrap-input100  validate-input bg1 rs1-wrap-input100" data-validate = "{{text_typeNat}}">
+                    <span class="label-input100">{{text_nationality}} *</span>
+                    <input class="input100" type="text" name="nationality" placeholder="{{text_enterNat}}" value = "{% if nationality is defined %}{{nationality}}{% endif %}">
+
+                </div>
+
+                <div class="wrap-input100 validate-input input100-select bg1" data-validate="{{text_selectCat}}">
+                    <span class="label-input100">{{text_categoryOKU}}<span style='color:red;' id="error_category"></span></span>
+                    <div>
+                        <select class="js-select2" name="category_oku" id="category_oku">
+                            <option value="">{{text_selectCat}} </option>
+                                {% for cat in okucat_info %}
+                                  {% if category_oku is not empty %}
+                                    <option value ="{{cat.category_id}}" selected >{{cat.category}}</option>
+                                    
+                                  {% else %}
+                                    <option value ="{{cat.category_id}}"> {{cat.category}}</option>
+                                
+                                  {% endif %}
+                                {% endfor %}
+
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+                </div>
+
+                <div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "{{text_typeJust}}">
+                    <span class="label-input100">{{text_justification}}</span>
+                    <textarea class="input100" name="justification" placeholder="{{text_enterJust}}">{% if justification is defined %}{{justification}}{% endif %}</textarea>
+                </div>
+
+                <div class="wrap-input100 validate-input bg1 " data-validate = "{{text_selectPhoto}}">
+                    <span class="label-input100">{{text_photo}}<span style="color:red">{{text_imgFormat}}</span></span>
+                    <input class="input100" type="file" name="photo" placeholder="{{text_uploadImg}}" id="file">
+                </div>
+
+                <div class="wrap-input100  validate-input bg1 " data-validate = "{{text_typeLO}}">
+                    <span class="label-input100">{{text_LOName}}</span>
+                    <input class="input100" type="text" name="lo_name" placeholder="{{text_enterLO}}" value = "{% if lo_name is defined %}{{lo_name}}{% endif %}">
+                </div>
+
+                <div class="container-contact100-form-btn">
+                    <button class="contact100-form-btn" name="submit" id="btnSubmit">
+                        <span>
+                            {{text_submit}}
+                            <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+<!--===============================================================================================-->
+    <script src="catalog/view/theme/default/stylesheet/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+    <script src="catalog/view/theme/default/stylesheet/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+    <script src="catalog/view/theme/default/stylesheet/vendor/bootstrap/js/popper.js"></script>
+    <script src="catalog/view/theme/default/stylesheet/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+    <script src="catalog/view/theme/default/stylesheet/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".js-select2").each(function(){
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+
+
+            $(".js-select2").each(function(){
+                $(this).on('select2:close', function (e){
+                    if($(this).val() == "Please chooses") {
+                        $('.js-show-service').slideUp();
+                    }
+                    else {
+                        $('.js-show-service').slideUp();
+                        $('.js-show-service').slideDown();
+                    }
+                });
+            });
+        })
+    </script>
+
+	<script>
+    $(document).ready(function () {
+		$("#file").change(function () {
+			var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+			if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+				alert("{{error_imgFormat}}"+fileExtension.join(', '));
+				$('#file').val('');
+			}
+		});
+
+        $("#form_oku").submit(function (e) {
+			var gender = $('#gender').val();
+			var category_oku = $('#category_oku').val();
+
+			var error = 0;
+
+			 if(gender == ''){
+				$('#error_gender').html('{{error_selectGender}}');
+				error = 1;
+			 }else{
+				 $('#error_gender').html('');
+			 }
+			 if(category_oku == ''){
+				$('#error_category').html('{{error_selectCategory}}');
+
+				error = 1;
+			 }else{
+				$('#error_category').html('');
+			 }
+
+			if(error == 0){
+				$(this).find("button[type='submit']").prop('disabled',true);
+			}
+        });
+    });
+</script>
+    <script src="catalog/view/theme/default/stylesheet/js/main.js"></script>
+</body>
